@@ -1,0 +1,44 @@
+// This is the public API offered by your entity.
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+import "akkaserverless/annotations.proto";
+import "google/api/annotations.proto";
+
+package cinema;
+
+option java_outer_classname = "CinemaApi";
+
+message CIncreaseValue {
+    string cinema_id = 1 [(akkaserverless.field).entity_key = true];
+    int32 value = 2;
+}
+
+message CDecreaseValue {
+    string cinema_id = 1 [(akkaserverless.field).entity_key = true];
+    int32 value = 2;
+}
+
+message CResetValue {
+    string cinema_id = 1 [(akkaserverless.field).entity_key = true];
+}
+
+message CGetCinema {
+    string cinema_id = 1 [(akkaserverless.field).entity_key = true];
+}
+
+message CurrentCinema {
+    int32 value = 1;
+}
+
+service CinemaService {
+    option (akkaserverless.service) = {
+        type : SERVICE_TYPE_ENTITY
+        component : ".domain.Cinema"
+    };
+
+    rpc Increase(CIncreaseValue) returns (google.protobuf.Empty);
+    rpc Decrease(CDecreaseValue) returns (google.protobuf.Empty);
+    rpc Reset(CResetValue) returns (google.protobuf.Empty);
+    rpc GetCurrentCinema(CGetCinema) returns (CurrentCinema);
+}
