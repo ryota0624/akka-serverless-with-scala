@@ -1,5 +1,10 @@
-# user
+akka-serverlessで動くコードをScalaで描ける様にしてみたぞい
 
+mavenでScalaを書ける様にすればOKぽい。
+
+java-sdkに合わせてコードを書くとbuilder-patternいっぱいでコードもいっぱいになっちゃうなあ〜
+
+# user
 
 ## Designing
 
